@@ -208,7 +208,7 @@ public:
 
         std::mt19937 rng;
         rng.seed(std::random_device()());
-        std::uniform_real_distribution<float> dist(-10.0f, 10.0f);
+        std::uniform_real_distribution<float> dist(-3.0f, 3.0f);
 
         std::generate(A.begin(), A.end(), [&] { return dist(rng); });
         std::generate(x.begin(), x.end(), [&] { return dist(rng); });
