@@ -41,7 +41,7 @@ jobs:
       - name: Build
         run: |
               export PATH="/opt/sc-dt/llvm/bin/:$PATH"
-              cmake CMakeLists.txt -DENABLE_TEST=ON -DENABLE_BENCH=ON -DUSE_OPENMP=OFF -DENABLE_EXAMPLES=OFF -DCMAKE_C_COMPILER=/opt/sc-dt/llvm/bin/clang -DCMAKE_CXX_COMPILER=/opt/sc-dt/llvm/bin/clang++ -DBUILD_TYPE=Release -DBUILD_STATIC=ON -B_build
+              cmake CMakeLists.txt -DENABLE_TEST=ON -DENABLE_BENCH=ON -DTARGET_ARCH=RISCV_VECTOR -DUSE_OPENMP=OFF -DENABLE_EXAMPLES=OFF -DCMAKE_C_COMPILER=/opt/sc-dt/llvm/bin/clang -DCMAKE_CXX_COMPILER=/opt/sc-dt/llvm/bin/clang++ -DBUILD_TYPE=Release -DBUILD_STATIC=ON -B_build
               cmake --build _build
 
       - name: Test
