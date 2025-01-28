@@ -12,9 +12,6 @@ permissions:
 jobs:
   Build_Test:
     runs-on: ubuntu-latest
-    env:
-      sc-dt_link: https://drive.google.com/uc?id=1GesPVEACp5imxOwvOnd0WWRrBswmG7RB
-      toolchain_file_name: sc-dt-2023.11.tar.gz
 
     steps:
       - name: Checkout repository
@@ -35,8 +32,8 @@ jobs:
 
       - name: Get sc-dt toolchain
         run: |
-              gdown ${sc-dt_link}
-              tar -xvf ${toolchain_file_name} -C /opt
+              gdown https://drive.google.com/uc?id=1GesPVEACp5imxOwvOnd0WWRrBswmG7RB
+              tar -xvf sc-dt-2023.11.tar.gz -C /opt
 
 
       - name: Build
