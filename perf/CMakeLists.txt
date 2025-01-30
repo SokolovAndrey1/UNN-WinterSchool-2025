@@ -31,6 +31,9 @@ endfunction()
 add_perf_test(abs scalar)
 add_perf_test(abs rvv)
 
+add_perf_test(axpby scalar)
+add_perf_test(axpby rvv)
+
 add_perf_test(dot scalar)
 add_perf_test(dot rvv)
 

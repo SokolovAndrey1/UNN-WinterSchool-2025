@@ -27,6 +27,9 @@ add_test(abs rvv)
 add_test(dot scalar)
 add_test(dot rvv)
 
+add_test(axpby scalar)
+add_test(axpby rvv)
+
 add_test(strlen scalar)
 add_test(strlen rvv)
 

@@ -5,7 +5,7 @@ add_library(${LIBRARY_NAME} STATIC)
 
 target_include_directories(${LIBRARY_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
-target_link_libraries(${LIBRARY_NAME} PRIVATE CommonConfiguration)
+target_link_libraries(${LIBRARY_NAME} PRIVATE CommonScalarConfiguration)
 
 function(add_obj_lib_scalar OBJ_NAME CONFIGURATION)
     add_library(${OBJ_NAME}_scalar OBJECT "${CMAKE_CURRENT_SOURCE_DIR}/src/scalar/${OBJ_NAME}.c")
@@ -21,20 +21,31 @@ function(add_obj_lib_rvv OBJ_NAME CONFIGURATION)
     target_link_libraries(${LIBRARY_NAME} PRIVATE ${OBJ_NAME}_rvv)
 endfunction()
 
-# Custom configuration for separate files example
-add_library(CustomConfiguration INTERFACE)
-target_link_libraries(CustomConfiguration INTERFACE BaseConfiguration)
+# Custom configuration for separate files with scalar impl
+add_library(CustomScalarConfiguration INTERFACE)
+target_link_libraries(CustomScalarConfiguration INTERFACE BaseScalarConfiguration)
 if(BUILD_TYPE STREQUAL "Release")
     # Add custom optimization flags here:
-    target_compile_options(CustomConfiguration INTERFACE -O3)
+    target_compile_options(CustomScalarConfiguration INTERFACE -O3)
 else()
-    target_link_libraries(CustomConfiguration INTERFACE BaseOptConfiguration)
+    target_link_libraries(CustomScalarConfiguration INTERFACE BaseOptConfiguration)
+endif()
+
+# Custom configuration for separate files with RVV optimization
+add_library(CustomVectorConfiguration INTERFACE)
+target_link_libraries(CustomVectorConfiguration INTERFACE BaseConfiguration)
+if(BUILD_TYPE STREQUAL "Release")
+    # Add custom optimization flags here:
+    target_compile_options(CustomVectorConfiguration INTERFACE -O3)
+else()
+    target_link_libraries(CustomVectorConfiguration INTERFACE BaseOptConfiguration)
 endif()
 
 #
 # Object libraries with separate compiler keys
 #
 add_obj_lib_scalar("abs" CommonScalarConfiguration)
+add_obj_lib_scalar("axbpy" CommonScalarConfiguration)
 add_obj_lib_scalar("dot" CommonScalarConfiguration)
 add_obj_lib_scalar("nrm2" CommonScalarConfiguration)
 add_obj_lib_scalar("iamin" CommonScalarConfiguration)
@@ -46,6 +57,7 @@ add_obj_lib_scalar("gemv" CommonScalarConfiguration)
 add_obj_lib_scalar("symv" CommonScalarConfiguration)
 
 add_obj_lib_rvv("abs" CommonConfiguration)
+add_obj_lib_rvv("axbpy" CommonConfiguration)
 add_obj_lib_rvv("dot" CommonConfiguration)
 add_obj_lib_rvv("nrm2" CommonConfiguration)
 add_obj_lib_rvv("iamin" CommonConfiguration)

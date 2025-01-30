@@ -11,6 +11,7 @@ extern size_t strlen_scalar(const char *str);
 
 // BLAS level-1
 extern float dot_scalar(const float* x, const float* y, size_t n);
+extern void axpby_scalar(size_t n, float alpha, const float* x, float beta, float* y);
 extern float nrm2_scalar(size_t n, const float* x);
 extern int iamin_scalar(size_t n, const float* x);
 

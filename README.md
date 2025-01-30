@@ -63,7 +63,7 @@ qemu-riscv64: Could not open '/lib/ld-linux-riscv64-lp64d.so.1': No such file or
 Сначала нужно скачать gem5. [Краткая инструкция](docs/InstallEnv.md)
 
 ``
-<path-to-gem5>/gem5.opt --debug-flags=O3PipeView --debug-file=./pipeview.out ./gem5/configuration.py
+<path-to-gem5>/gem5.opt --debug-flags=O3PipeView --debug-file=./pipeview.out ./gem5/configuration.py ./_build/perf/abs_scalar_perf
 ``
 
 где:\
@@ -88,3 +88,17 @@ qemu-riscv64: Could not open '/lib/ld-linux-riscv64-lp64d.so.1': No such file or
 1) Скачать релизный билд https://github.com/shioyadan/Konata/releases/tag/v0.39 (konata-win32-x64.zip)
 2) Распаковать, запустить konata.exe
 3) Открыть трассу в программе konata (можно drug&drop)
+
+
+## Поиск тестируемой функции на kanata трассе
+
+Самый надежный способ - поиск по адресу инструкции. Чтобы его узнать, сначала нужно получить дизасемблер бенчмарка, который запускался с помощью Gem5:
+
+`<path-to-sc-dt>/sc-dt/riscv-gcc/bin/riscv64-unknown-linux-gnu-objdump -d ./_build/perf/axpby_scalar_perf > objdump_scal.txt`
+
+В файле с дизасеблером найти нужную функцию через поиск (напр. axpby_scalar) и взять адрес первой инструкции или функции.
+
+Далее поиском (Cntr+F) в программе для просмотра трасс вставить этот адрес. Также поиском можно искать по названиям инструкций (если это RVV функция, то, например, vsetvli).
+
+
+

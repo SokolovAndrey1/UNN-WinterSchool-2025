@@ -28,3 +28,6 @@ cmake CMakeLists.txt \
 
 # Build project
 cmake --build _build
+
+# To build one target
+# cmake --build _build --target axpby_scalar_perf

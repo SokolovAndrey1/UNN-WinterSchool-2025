@@ -35,8 +35,8 @@ elseif("${TARGET_ARCH}" STREQUAL "RISCV_VECTOR")
     #
     # Add march for scalar and vector algorithms
     #
-    target_compile_options(BaseConfiguration INTERFACE -march=rv64gcv)
-    target_compile_options(BaseScalarConfiguration INTERFACE -march=rv64gc)
+    target_compile_options(BaseConfiguration INTERFACE -march=rv64gcv_zba_zbb_zbc_zbs -mabi=lp64d --target=riscv64-unknown-linux-gnu)
+    target_compile_options(BaseScalarConfiguration INTERFACE -march=rv64gc_zba_zbb_zbc_zbs -mabi=lp64d --target=riscv64-unknown-linux-gnu -mno-implicit-float -fno-vectorize -fno-slp-vectorize)
 elseif("${TARGET_ARCH}" STREQUAL "X86")
 target_compile_definitions(BaseConfiguration INTERFACE -DX86)
 else()
