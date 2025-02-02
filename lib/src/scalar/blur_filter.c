@@ -5,8 +5,8 @@ void blur_filter_scalar(uint8_t* src, uint8_t* dst, int width, int height, int k
     int half_kernel = kernel_size / 2;
     uint16_t div = kernel_size * kernel_size;
 
-    for (int y = 0; y < height; y++) {
-        for (int x = 0; x < width; x++) {
+    for (int y = half_kernel; y < height - half_kernel; y++) {
+        for (int x = half_kernel; x < width - half_kernel; x++) {
             uint16_t sumr = 0;
             uint16_t sumg = 0;
             uint16_t sumb = 0;
@@ -16,12 +16,6 @@ void blur_filter_scalar(uint8_t* src, uint8_t* dst, int width, int height, int k
 
                     int src_x = x + kx;
                     int src_y = y + ky;
-
-                    // Replicate border
-                    if (src_x < 0) src_x = 0;
-                    if (src_x >= width) src_x = width - 1;
-                    if (src_y < 0) src_y = 0;
-                    if (src_y >= height) src_y = height - 1;
 
                     int src_offset = (src_y * width + src_x) * channels;
 
