@@ -54,16 +54,16 @@ int main() {
     //
     // Bench medium sizes
     //
-    // constexpr int medium_length = 10;
-    // constexpr int medium_iterations = 1;
-    // bench_abs(medium_length, medium_iterations);
+    constexpr int medium_length = 100;
+    constexpr int medium_iterations = 1;
+    bench_abs(medium_length, medium_iterations);
 
     //
     // Bench big sizes
     //
-    // constexpr int big_length = 10;
-    // constexpr int big_iterations = 1;
-    // bench_abs(big_length, big_iterations);
+    constexpr int big_length = 1000;
+    constexpr int big_iterations = 1;
+    bench_abs(big_length, big_iterations);
 
     return 0;
 }
