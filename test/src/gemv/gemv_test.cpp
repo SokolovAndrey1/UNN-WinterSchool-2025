@@ -36,14 +36,14 @@ COMMON_TEST(Test_Gemv_Size_2x2)
     GEMV_FUNC(m, n, alpha, A.data(), x.data(), y_result.data());
 
     //std::vector<float> c;
-    std::cout<<"Result vector"<<std::endl;
-    for (size_t i=0; i<y_result.size();i++){
-        std::cout<<y_result[i]<<std::endl;
-    }
-    std::cout<<"Ref vector"<<std::endl;
-    for (size_t i=0; i<y_reference.size();i++){
-        std::cout<<y_reference[i]<<std::endl;
-    }
+    // std::cout<<"Result vector"<<std::endl;
+    // for (size_t i=0; i<y_result.size();i++){
+    //     std::cout<<y_result[i]<<std::endl;
+    // }
+    // std::cout<<"Ref vector"<<std::endl;
+    // for (size_t i=0; i<y_reference.size();i++){
+    //     std::cout<<y_reference[i]<<std::endl;
+    // }
 
     EXPECT_NEAR_VECTOR_VECTOR(y_result, y_reference, threshold);
 }
@@ -64,18 +64,18 @@ COMMON_TEST(Test_Gemv_Size_3x3)
     gemv_ref(m, n, alpha, A.data(), x.data(), y_reference.data());
     GEMV_FUNC(m, n, alpha, A.data(), x.data(), y_result.data());
     //vse32_v_f32m8(temp_buffer, y_result, vl);
-    std::cout<<"Result vector"<<std::endl;
-    for (size_t i=0; i<y_result.size();i++){
-        std::cout<<y_result[i]<<std::endl;
-    }
-    std::cout<<"Ref vector"<<std::endl;
-    for (size_t i=0; i<y_reference.size();i++){
-        std::cout<<y_reference[i]<<std::endl;
-    }
+    // std::cout<<"Result vector"<<std::endl;
+    // for (size_t i=0; i<y_result.size();i++){
+    //     std::cout<<y_result[i]<<std::endl;
+    // }
+    // std::cout<<"Ref vector"<<std::endl;
+    // for (size_t i=0; i<y_reference.size();i++){
+    //     std::cout<<y_reference[i]<<std::endl;
+    // }
 
     EXPECT_NEAR_VECTOR_VECTOR(y_result, y_reference, threshold);
 }
-/*
+
 COMMON_TEST(Test_Gemv_Size_4x3)
 {
     static constexpr size_t m = 4;
@@ -202,7 +202,7 @@ COMMON_TEST(Test_Gemv_Size_8x8)
 
     EXPECT_NEAR_VECTOR_VECTOR(y_result, y_reference, threshold);
 }
-*/
+
 
 constexpr size_t mIndex{0U};
 constexpr size_t nIndex{1U};
@@ -247,8 +247,8 @@ using TypesGemv = testing::Types<TEST_GEMV(1U, 1U),
                                  TEST_GEMV(5U, 1U),
                                  TEST_GEMV(6U, 1U),
                                  TEST_GEMV(7U, 1U),
-                                 TEST_GEMV(8U, 1U)>//,
-                                 /*TEST_GEMV(1U, 2U),
+                                 TEST_GEMV(8U, 1U),
+                                 TEST_GEMV(1U, 2U),
                                  TEST_GEMV(2U, 2U),
                                  TEST_GEMV(3U, 2U),
                                  TEST_GEMV(4U, 2U),
@@ -309,7 +309,7 @@ using TypesGemv = testing::Types<TEST_GEMV(1U, 1U),
                                  TEST_GEMV(63U, 63U),
                                  TEST_GEMV(64U, 64U),
                                  TEST_GEMV(65U, 65U),
-                                 TEST_GEMV(128U, 128U)>*/;
+                                 TEST_GEMV(128U, 128U)>;
 
 TYPED_TEST_SUITE(Gemv, TypesGemv);
 
