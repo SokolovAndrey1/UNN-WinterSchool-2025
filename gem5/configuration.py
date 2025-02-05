@@ -214,6 +214,7 @@ class RVV_FP_ALU(FUDesc):
         OpDesc(opClass="SimdFloatExt",       opLat=17, pipelined=True),
         OpDesc(opClass="SimdFloatMisc",      opLat=21, pipelined=True),
         OpDesc(opClass="SimdFloatCvt",       opLat=17, pipelined=True),
+        OpDesc(opClass="SimdFloatReduceAdd", opLat=8,  pipelined=True),
         OpDesc(opClass="SimdFloatReduceCmp", opLat=12, pipelined=True),
         OpDesc(opClass="SimdFloatReduceAdd", opLat=8,  pipelined=True),
         OpDesc(opClass="SimdShift",          opLat=4, pipelined=True),
