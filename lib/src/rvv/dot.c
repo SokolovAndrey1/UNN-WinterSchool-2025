@@ -41,7 +41,7 @@ float dot_rvv(const float *x, const float *y, size_t n)
         mul_sum = __riscv_vfmacc_vv_f32m8(mul_sum, v_x, v_y, vl_max);
     }
     vfloat32m1_t v_dot = __riscv_vfmv_v_f_f32m1(0, 1);
-    v_dot = __riscv_vfredosum_vs_f32m8_f32m1(mul_sum, v_dot, vl_max);
+    v_dot = __riscv_vfredosum_vs_f32m8_f32m1(mul_sum, v_dot, vl_max); // -> redUsum ?
 
     // Обработка хвоста
     float tail_mul_sum = 0;
