@@ -12,8 +12,8 @@ void symv_rvv(size_t n, float alpha, const float* a, const float* x, float* y) {
 
     for (size_t j = 0; j < offset; j++) {
         float temp1 = alpha * x[jx];
-        float temp2 = 0.0f;
-        //vfloat32m8_t temp2 = __riscv_vfmv_v_f_f32m8(0.0f, n - j);
+        //float temp2 = 0.0f;
+        vfloat32m8_t temp2 = __riscv_vfmv_v_f_f32m8(0.0f, n - j);
         size_t jlda = j * lda;
         y[jy] += temp1 * a[jlda + j];
 
@@ -34,10 +34,10 @@ void symv_rvv(size_t n, float alpha, const float* a, const float* x, float* y) {
             vfloat32m8_t y_vec =  __riscv_vle32_v_f32m8(&y[iy], vl);
 
             
-            y_vec =  __riscv_vfmacc_vf_f32m8_tu(y_vec, temp1, a_vec, vl);
-            //temp2 =  __riscv_vfmacc_vv_f32m8_tu(temp2, a_vec, x_vec, vl); 
-            temp2 += __riscv_vfmv_f_s_f32m1_f32(__riscv_vfredusum_vs_f32m8_f32m1(__riscv_vfmul_vv_f32m8(a_vec, x_vec, vl), 
-                                                                       __riscv_vfmv_v_f_f32m1(0.0, vl), vl)); 
+            y_vec =  __riscv_vfmacc_vf_f32m8(y_vec, temp1, a_vec, vl);
+            temp2 =  __riscv_vfmacc_vv_f32m8(temp2, a_vec, x_vec, vl); 
+            //temp2 += __riscv_vfmv_f_s_f32m1_f32(__riscv_vfredusum_vs_f32m8_f32m1(__riscv_vfmul_vv_f32m8(a_vec, x_vec, vl), 
+              //                                                         __riscv_vfmv_v_f_f32m1(0.0, vl), vl)); 
 
              __riscv_vse32_v_f32m8(&y[iy], y_vec, vl);
 
@@ -47,9 +47,9 @@ void symv_rvv(size_t n, float alpha, const float* a, const float* x, float* y) {
         }
     
     
-        //y[jy] += __riscv_vfmv_f_s_f32m1_f32(__riscv_vfredusum_vs_f32m8_f32m1(
-                               // (temp2), __riscv_vfmv_v_f_f32m1(0.0, n - j), n - j)) * alpha;
-        y[jy] += alpha * temp2;
+        y[jy] += __riscv_vfmv_f_s_f32m1_f32(__riscv_vfredusum_vs_f32m8_f32m1(
+                                (temp2), __riscv_vfmv_v_f_f32m1(0.0, n - j), n - j)) * alpha;
+        //y[jy] += alpha * temp2;
         
         jx += inc_x;
         jy += inc_y;

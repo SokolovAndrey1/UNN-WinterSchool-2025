@@ -51,49 +51,72 @@ static inline void bench_symv(int length, int iterations) {
 
 int main() {
 
-    // // //
-    // // // Bench small sizes
-    // // //
-    // // constexpr int small_length = 4;
-    // // constexpr int small_iterations = 10;
-    // // bench_symv(small_length, small_iterations);
-
-    // // //
-    // // // Bench medium sizes
-    // // //
-    // // constexpr int medium_length = 8;
-    // // constexpr int medium_iterations = 20;
-    // // bench_symv(medium_length, medium_iterations);
-    
-    // //
-    // // Bench big sizes
-    // //
-    // constexpr int big_length = 1024;
-    // constexpr int big_iterations = 1;
-    // bench_symv(big_length, big_iterations);
-    
-
-    
     //
     // Bench small sizes
     //
-    constexpr int small_length = 1024;
-    constexpr int small_iterations = 1000;
+    constexpr int small_length = 16;
+    constexpr int small_iterations = 10;
     bench_symv(small_length, small_iterations);
 
     //
     // Bench medium sizes
     //
-    constexpr int medium_length = 8192;
-    constexpr int medium_iterations = 100;
+    constexpr int medium_length = 64;
+    constexpr int medium_iterations = 5;
     bench_symv(medium_length, medium_iterations);
     
     //
     // Bench big sizes
     //
-    constexpr int big_length = 16384;
-    constexpr int big_iterations = 50;
+    constexpr int big_length = 128;
+    constexpr int big_iterations = 10;
     bench_symv(big_length, big_iterations);
+    
+
+    
+    // //
+    // // Bench small sizes
+    // //
+    // constexpr int small_length = 1024;
+    // constexpr int small_iterations = 3000;
+    // bench_symv(small_length, small_iterations);
+
+    // //
+    // // Bench medium sizes
+    // //
+    // constexpr int medium_length = 8192;
+    // constexpr int medium_iterations = 500;
+    // bench_symv(medium_length, medium_iterations);
+    
+    // //
+    // // Bench big sizes
+    // //
+    // constexpr int big_length = 16384;
+    // constexpr int big_iterations = 200;
+    // bench_symv(big_length, big_iterations);
+
+    
+    // //
+    // // Bench small sizes
+    // //
+    // constexpr int small_length = 16;
+    // constexpr int small_iterations = 100000;
+    // bench_symv(small_length, small_iterations);
+
+    // //
+    // // Bench medium sizes
+    // //
+    // constexpr int medium_length = 64;
+    // constexpr int medium_iterations = 50000;
+    // bench_symv(medium_length, medium_iterations);
+    
+    // //
+    // // Bench big sizes
+    // //
+    // constexpr int big_length = 128;
+    // constexpr int big_iterations = 20000;
+    // bench_symv(big_length, big_iterations);
+    
     
 
     return 0;
