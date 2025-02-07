@@ -12,9 +12,9 @@ extern "C" {
 #include <functional>
 
 [[maybe_unused]]
-static void prepareString(uint8_t* str, int length) {
+static void prepareString(char* str, int length) {
     std::mt19937 rng(std::random_device{}());
-    std::uniform_int_distribution<uint8_t> dist(0, 255);
+    std::uniform_int_distribution<char> dist(0, 255);
 
     std::generate(str, str + length, [&]() { return dist(rng); });
     str[length-1] = '\0';
@@ -56,6 +56,7 @@ static void printStat(uint64_t minCycles, uint64_t totalCycles, int iterations, 
     std::cout << "================================" << std::endl;
 }
 
+//on laptop
 #ifdef __riscv
 static inline uint64_t __attribute__((__always_inline__, __artificial__)) rdcycle(void)
 {
@@ -64,6 +65,17 @@ static inline uint64_t __attribute__((__always_inline__, __artificial__)) rdcycl
     return dst;
 }
 #endif // __riscv
+
+//on rvv
+// #ifdef __riscv
+// static __inline __attribute__((__always_inline__, __artificial__)) unsigned long rdcycle(void) 
+// { 
+//     uint64_t dst; 
+//     asm volatile ("rdtime %0" : "=r" (dst) ); 
+//     return dst; 
+// }
+// #endif // __riscv
+
 
 #ifdef __x86_64__
 static __inline __attribute__((__gnu_inline__, __always_inline__, __artificial__)) uint64_t rdcycle(void){
