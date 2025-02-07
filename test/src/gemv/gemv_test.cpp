@@ -1,5 +1,4 @@
 #include "gemv_test.hpp"
-#include <iostream>
 constexpr float threshold = 1e-1;
 
 COMMON_TEST(Test_Gemv_Size_1x1)
@@ -35,16 +34,6 @@ COMMON_TEST(Test_Gemv_Size_2x2)
     gemv_ref(m, n, alpha, A.data(), x.data(), y_reference.data());
     GEMV_FUNC(m, n, alpha, A.data(), x.data(), y_result.data());
 
-    //std::vector<float> c;
-    std::cout<<"Result vector"<<std::endl;
-    for (size_t i=0; i<y_result.size();i++){
-        std::cout<<y_result[i]<<std::endl;
-    }
-    std::cout<<"Ref vector"<<std::endl;
-    for (size_t i=0; i<y_reference.size();i++){
-        std::cout<<y_reference[i]<<std::endl;
-    }
-
     EXPECT_NEAR_VECTOR_VECTOR(y_result, y_reference, threshold);
 }
 
@@ -63,15 +52,6 @@ COMMON_TEST(Test_Gemv_Size_3x3)
 
     gemv_ref(m, n, alpha, A.data(), x.data(), y_reference.data());
     GEMV_FUNC(m, n, alpha, A.data(), x.data(), y_result.data());
-    //vse32_v_f32m8(temp_buffer, y_result, vl);
-    std::cout<<"Result vector"<<std::endl;
-    for (size_t i=0; i<y_result.size();i++){
-        std::cout<<y_result[i]<<std::endl;
-    }
-    std::cout<<"Ref vector"<<std::endl;
-    for (size_t i=0; i<y_reference.size();i++){
-        std::cout<<y_reference[i]<<std::endl;
-    }
 
     EXPECT_NEAR_VECTOR_VECTOR(y_result, y_reference, threshold);
 }
@@ -320,40 +300,6 @@ TYPED_TEST(Gemv, Test_Rand_Values) {
 
     gemv_ref(m, n, 1.5f, this->A.data(), this->x.data(), this->y_reference.data());
     GEMV_FUNC(m, n, 1.5f, this->A.data(), this->x.data(), this->y_result.data());
-
-    // std::cout<<"Input matrix"<<m<<" "<<n<<std::endl;
-    // for (size_t i=0; i<this->A.size(); i+=this->x.size()) {
-    //     for (size_t j=0; j<this->x.size();j++){
-    //         std::cout<<this->A[i+j]<<", ";
-    //     }
-    //     std::cout<<std::endl;
-    // }
-    // std::cout<<"\n\n";
-    // std::cout<<"Input vector"<<std::endl;
-    // for (size_t i=0; i<this->x.size();i++) {
-    //     std::cout<<this->x[i]<<"  ";
-    // }
-    // std::cout<<"\n\n";
-
-    std::cout<<"Result vector"<<std::endl;
-    for (size_t i=0; i<this->y_result.size();i++){
-        std::cout<<this->y_result[i]<<std::endl;
-    }
-    std::cout<<"\n\n";
-    std::cout<<"Ref vector"<<std::endl;
-    for (size_t i=0; i<this->y_reference.size();i++){
-        std::cout<<this->y_reference[i]<<std::endl;
-    }
-
-    for (size_t i=0; i<this->y_reference.size();i++){
-        if (fabs(this->y_result[i]-this->y_reference[i])>threshold){
-            std::cout<<"Expected exceeding of threshold"<<std::endl;
-            std::cout<<"Result is "<<this->y_result[i]<<std::endl;
-            std::cout<<"But reference is "<<this->y_reference[i]<<std::endl;
-        }
-    }
-    //std::cout<<"/n/n";
-    
 
     EXPECT_NEAR_VECTOR_VECTOR(this->y_result, this->y_reference, threshold);
 }
