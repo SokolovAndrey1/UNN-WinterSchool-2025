@@ -10,7 +10,7 @@ size_t strlen_rvv(const char *str)
 
     while (1) {
          vl = __riscv_vsetvlmax_e8m8();
-         chunk = __riscv_vle8_v_u8m8(ptr,vl, vl); // Загрузка вектора байтов из памяти
+         chunk = __riscv_vle8_v_u8m8(ptr, vl); // Загрузка вектора байтов из памяти
          all_zero = __riscv_vmseq_vx_u8m8_b1(chunk, 0, vl); // Сравнение элементов вектора с нулём
          long first_zero = __riscv_vfirst_m_b1(all_zero, vl); // Поиск первого нулевого байта
          if (first_zero >= 0) {// Если нулевой байт найден
