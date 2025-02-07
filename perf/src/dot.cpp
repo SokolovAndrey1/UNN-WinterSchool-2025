@@ -14,8 +14,8 @@ static inline void bench_dot(int length, int iterations) {
     std::vector<float> x(length, 0);
     std::vector<float> y(length, 0);
 
-    prepareVector(x.data(), length);
-    prepareVector(y.data(), length);
+    // prepareVector(x.data(), length);
+    // prepareVector(y.data(), length);
 
     volatile uint64_t start = 0,
                     end = 0,
@@ -49,21 +49,21 @@ int main() {
     // Bench small sizes
     //
     constexpr int small_length = 64;
-    constexpr int small_iterations = 10'000;
+    constexpr int small_iterations = 100000;
     bench_dot(small_length, small_iterations);
 
     //
     // Bench medium sizes
     //
     constexpr int medium_length = 1024;
-    constexpr int medium_iterations = 10'000;
+    constexpr int medium_iterations = 10000;
     bench_dot(medium_length, medium_iterations);
 
     //
     // Bench big sizes
     //
     constexpr int big_length = 16384;
-    constexpr int big_iterations = 100'000;
+    constexpr int big_iterations = 1000;
     bench_dot(big_length, big_iterations);
 
     return 0;
