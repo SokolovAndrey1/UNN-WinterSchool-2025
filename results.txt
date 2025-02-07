@@ -1,0 +1,285 @@
+naive scalar test:
+
+================================
+Testing Scalar SYMV with length 1024
+107494 cycles min
+110898 cycles average
+================================
+================================
+Testing Scalar SYMV with length 8192
+5389657 cycles min
+5417573 cycles average
+================================
+================================
+Testing Scalar SYMV with length 16384
+20786911 cycles min
+21178489 cycles average
+================================
+
+
+
+
+improved scalar: (index value stored)
+
+================================
+Testing Scalar SYMV with length 1024
+107839 cycles min
+111998 cycles average
+================================
+================================
+Testing Scalar SYMV with length 8192
+5429542 cycles min
+5471411 cycles average
+================================
+================================
+Testing Scalar SYMV with length 16384
+20246705 cycles min
+20554814 cycles average
+================================
+
+
+
+cycled rvv:
+================================
+Testing RVV SYMV with length 1024
+55017 cycles min
+56832 cycles average
+================================
+================================
+Testing RVV SYMV with length 8192
+2461437 cycles min
+2516821 cycles average
+================================
+================================
+Testing RVV SYMV with length 16384
+8377260 cycles min
+8473885 cycles average
+================================
+
+uncycled rvv:
+
+================================
+Testing RVV SYMV with length 1024
+51305 cycles min
+55348 cycles average
+================================
+================================
+Testing RVV SYMV with length 8192
+2388995 cycles min
+2451755 cycles average
+================================
+================================
+Testing RVV SYMV with length 16384
+8193426 cycles min
+8245395 cycles average
+================================
+
+uncycled rvv with tu fixed:
+
+================================
+Testing RVV SYMV with length 1024
+52440 cycles min
+54267 cycles average
+================================
+================================
+Testing RVV SYMV with length 8192
+2365816 cycles min
+2395056 cycles average
+================================
+================================
+Testing RVV SYMV with length 16384
+8521979 cycles min
+8546772 cycles average
+================================
+
+uncucled tu fixed swapped temp2_fi
+
+
+================================
+Testing RVV SYMV with length 1024
+52779 cycles min
+56490 cycles average
+================================
+================================
+Testing RVV SYMV with length 8192
+2282139 cycles min
+2434230 cycles average
+================================
+================================
+Testing RVV SYMV with length 16384
+8596065 cycles min
+8631352 cycles average
+================================
+
+
+
+uncycled rvv test without any tu:
+
+================================
+Testing RVV SYMV with length 1024
+51600 cycles min
+53389 cycles average
+================================
+================================
+Testing RVV SYMV with length 8192
+2372649 cycles min
+2420330 cycles average
+================================
+================================
+Testing RVV SYMV with length 16384
+8582139 cycles min
+8645760 cycles average
+================================
+
+
+
+
+naive scalar gem5 test:
+================================
+Testing Scalar SYMV with length 16
+1216 cycles min
+1467 cycles average
+================================
+================================
+Testing Scalar SYMV with length 64
+12333 cycles min
+12494 cycles average
+================================
+================================
+Testing Scalar SYMV with length 128
+50094 cycles min
+50094 cycles average
+===============================
+
+
+improved scalar gem5 test:
+================================
+Testing Scalar SYMV with length 16
+1195 cycles min
+1423 cycles average
+================================
+================================
+Testing Scalar SYMV with length 64
+12068 cycles min
+12252 cycles average
+================================
+================================
+Testing Scalar SYMV with length 128
+48560 cycles min
+48803 cycles average
+================================
+
+
+
+cycled rvv gem5 test with LMUL8
+================================
+Testing RVV SYMV with length 16
+1324 cycles min
+1417 cycles average
+================================
+================================
+Testing RVV SYMV with length 64
+5461 cycles min
+5489 cycles average
+================================
+================================
+Testing RVV SYMV with length 128
+14632 cycles min
+14632 cycles average
+================================
+
+
+
+uncycled rvv gem5 test LMUL8:
+================================
+Testing RVV SYMV with length 16
+1317 cycles min
+1420 cycles average
+================================
+================================
+Testing RVV SYMV with length 64
+5707 cycles min
+5733 cycles average
+================================
+================================
+Testing RVV SYMV with length 128
+16946 cycles min
+17135 cycles average
+================================
+
+
+
+uncycled rvv gem5 tu fix:
+================================
+Testing RVV SYMV with length 16
+1332 cycles min
+1432 cycles average
+================================
+================================
+Testing RVV SYMV with length 64
+5821 cycles min
+5855 cycles average
+================================
+================================
+Testing RVV SYMV with length 128
+14206 cycles min
+14349 cycles average
+================================
+
+
+ucycled rvv gem tu fixed swapped temp2 fi
+================================
+Testing RVV SYMV with length 16
+1464 cycles min
+1557 cycles average
+================================
+================================
+Testing RVV SYMV with length 64
+6218 cycles min
+6270 cycles average
+================================
+================================
+Testing RVV SYMV with length 128
+17342 cycles min
+17515 cycles average
+================================
+
+
+
+uncycled rvv gem5 tu++ fix:
+================================
+Testing RVV SYMV with length 16
+1178 cycles min
+1266 cycles average
+================================
+================================
+Testing RVV SYMV with length 64
+5535 cycles min
+5558 cycles average
+================================
+================================
+Testing RVV SYMV with length 128
+16641 cycles min
+16923 cycles average
+================================
+
+
+
+ucycled rvv lc tu fixed swapped temp2_fi:
+
+================================
+Testing RVV SYMV with length 16
+42 cycles min
+42 cycles average
+================================
+================================
+Testing RVV SYMV with length 64
+169 cycles min
+169 cycles average
+================================
+================================
+Testing RVV SYMV with length 128
+508 cycles min
+549 cycles average
+================================
+

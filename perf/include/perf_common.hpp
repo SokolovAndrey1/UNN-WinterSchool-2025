@@ -21,6 +21,13 @@ static void prepareString(uint8_t* str, int length) {
 }
 
 [[maybe_unused]]
+static void prepareFloat(float* val, const float radius) {
+    std::mt19937 rng(std::random_device{}());
+    std::uniform_real_distribution<float> dist(-radius, radius);
+    *val = dist(rng);
+}
+
+[[maybe_unused]]
 static void prepareVector(float* vec, int length) {
     std::mt19937 rng(std::random_device{}());
     std::uniform_real_distribution<float> dist(-10.0f, 10.0f);
@@ -56,14 +63,32 @@ static void printStat(uint64_t minCycles, uint64_t totalCycles, int iterations, 
     std::cout << "================================" << std::endl;
 }
 
+
 #ifdef __riscv
-static inline uint64_t __attribute__((__always_inline__, __artificial__)) rdcycle(void)
+//on laptop
+static inline uint64_t __attribute((always_inline, artificial)) rdcycle(void)
 {
     uint64_t dst;
     asm volatile ("csrrs %0, 0xc00, x0" : "=r" (dst));
     return dst;
 }
 #endif // __riscv
+
+
+
+
+// //on rvv
+// #ifdef __riscv
+// static __inline __attribute__((__always_inline__, __artificial__)) unsigned long rdcycle(void)  
+// {  
+//     uint64_t dst;  
+//     asm volatile ("rdtime %0" : "=r" (dst) );  
+//     return dst;  
+// } 
+// #endif // __riscv
+
+
+
 
 #ifdef __x86_64__
 static __inline __attribute__((__gnu_inline__, __always_inline__, __artificial__)) uint64_t rdcycle(void){

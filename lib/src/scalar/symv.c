@@ -13,7 +13,8 @@ void symv_scalar(size_t n, float alpha, const float* a, const float* x, float* y
     for(size_t j = 0; j < offset; j++) {
         float temp1 = alpha * x[jx];
         float temp2 = 0.0;
-        y[jy] += temp1 * a[j * lda + j];
+        size_t jlda = j * lda;
+        y[jy] += temp1 * a[jlda + j];
 
         size_t iy = jy;
         size_t ix = jx;
@@ -21,8 +22,8 @@ void symv_scalar(size_t n, float alpha, const float* a, const float* x, float* y
         for(size_t i = j + 1; i < n; i++) {
             ix += inc_x;
             iy += inc_y;
-            y[iy] += temp1 * a[j * lda + i];
-            temp2 += a[j * lda + i] * x[ix];
+            y[iy] += temp1 * a[jlda + i];
+            temp2 += a[jlda + i] * x[ix];
         }
         y[jy] += alpha * temp2;
         jx += inc_x;
