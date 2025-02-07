@@ -14,7 +14,7 @@ static inline void bench_abs(int length, int iterations) {
     std::vector<float> src(length, 0);
     std::vector<float> dst(length, 0);
 
-    prepareVector(src.data(), length);
+    // prepareVector(src.data(), length);
 
     volatile uint64_t start = 0,
                     end = 0,
@@ -48,21 +48,21 @@ int main() {
     // Bench small sizes
     //
     constexpr int small_length = 64;
-    constexpr int small_iterations = 100'000;
+    constexpr int small_iterations = 20;
     bench_abs(small_length, small_iterations);
 
     //
     // Bench medium sizes
     //
     constexpr int medium_length = 1024;
-    constexpr int medium_iterations = 1'000;
+    constexpr int medium_iterations = 10;
     bench_abs(medium_length, medium_iterations);
 
     //
     // Bench big sizes
     //
-    constexpr int big_length = 524288;
-    constexpr int big_iterations = 100;
+    constexpr int big_length = 16384;
+    constexpr int big_iterations = 3;
     bench_abs(big_length, big_iterations);
 
     return 0;

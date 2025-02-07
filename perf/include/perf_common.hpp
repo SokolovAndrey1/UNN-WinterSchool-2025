@@ -57,12 +57,20 @@ static void printStat(uint64_t minCycles, uint64_t totalCycles, int iterations, 
 }
 
 #ifdef __riscv
-static inline uint64_t __attribute__((__always_inline__, __artificial__)) rdcycle(void)
-{
-    uint64_t dst;
-    asm volatile ("csrrs %0, 0xc00, x0" : "=r" (dst));
-    return dst;
+// for BananaPi
+static __inline __attribute__((__always_inline__, __artificial__)) unsigned long rdcycle(void) 
+{ 
+    uint64_t dst; 
+    asm volatile ("rdtime %0" : "=r" (dst) ); 
+    return dst; 
 }
+// for gem5
+// static inline __attribute__((__always_inline__, __artificial__)) uint64_t rdcycle(void) 
+// { 
+//     uint64_t dst; 
+//     asm volatile ("csrrs %0, 0xc00, x0" : "=r" (dst)); 
+//     return dst; 
+// }
 #endif // __riscv
 
 #ifdef __x86_64__
