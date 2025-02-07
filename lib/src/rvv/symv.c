@@ -35,7 +35,7 @@ void symv_rvv(size_t n, float alpha, const float* a, const float* x, float* y) {
 
             
             y_vec =  __riscv_vfmacc_vf_f32m8(y_vec, temp1, a_vec, vl);
-            temp2 =  __riscv_vfmacc_vv_f32m8(temp2, a_vec, x_vec, vl); 
+            temp2 =  __riscv_vfmacc_vv_f32m8_tu(temp2, a_vec, x_vec, vl); 
             //temp2 += __riscv_vfmv_f_s_f32m1_f32(__riscv_vfredusum_vs_f32m8_f32m1(__riscv_vfmul_vv_f32m8(a_vec, x_vec, vl), 
               //                                                         __riscv_vfmv_v_f_f32m1(0.0, vl), vl)); 
 
